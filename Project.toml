@@ -3,11 +3,15 @@ uuid = "a9a52fb0-7ce7-45ed-8d5d-e51f18b9f8d5"
 authors = ["Miguel Bazdresch <miguelb@2pif.info> and contributors"]
 version = "0.1.0"
 
-[extras]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+[deps]
+QuadGK = "1fd47b50-473d-5c70-9696-f719f8f3bcdc"
+Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
 [compat]
 julia = "1.7"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
 test = ["Test"]
