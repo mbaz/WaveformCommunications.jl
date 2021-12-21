@@ -1,0 +1,13 @@
+name = "WaveformCommunications"
+uuid = "a9a52fb0-7ce7-45ed-8d5d-e51f18b9f8d5"
+authors = ["Miguel Bazdresch <miguelb@2pif.info> and contributors"]
+version = "0.1.0"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[compat]
+julia = "1.7"
+
+[targets]
+test = ["Test"]
