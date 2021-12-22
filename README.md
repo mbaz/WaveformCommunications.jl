@@ -16,9 +16,9 @@ symbol energy 2 J, and using half-sine pulses.
 1. Instantiate the constellation
 
 ```
-using WaveformComm
+using WaveformCommunications
 
-c = squareqam(M = 16, Es = 2)
+c = qam(M = 16, Es = 2)
 ```
 
 2. Generate the pulse function.
@@ -45,3 +45,13 @@ t = range(0, nsyms/Rp, step=1/fs)
 waveform = ps.(t)
 plot(t, real(waveform))
 ```
+
+5. Plot the eye diagram
+
+The waveform's eye diagram may be plotted by running
+
+```
+ed = eyediag(wf, 1/Rp)
+```
+
+and plotting the columns of `ed`.
