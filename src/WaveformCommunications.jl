@@ -4,10 +4,11 @@ using QuadGK, Statistics
 
 export cosinepulse, halfsinepulse, rcpulse, srrcpulse, gaussianpulse,
        Constellation, pam, squareqam, psk,
-       Pulse, pulseshaper
+       Pulse, pulseshaper, eyediag
 
 include("pulses.jl")
 include("constellations.jl")
+include("utils.jl")
 
 """
     pulseshaper(c, pulse, nsyms = 20)
