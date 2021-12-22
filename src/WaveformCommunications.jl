@@ -3,7 +3,7 @@ module WaveformCommunications
 using QuadGK, Statistics
 
 export cosinepulse, halfsinepulse, rcpulse, srrcpulse, gaussianpulse,
-       Constellation, pam, squareqam, psk,
+       Constellation, pam, qam, psk,
        Pulse, pulseshaper, eyediag
 
 include("pulses.jl")

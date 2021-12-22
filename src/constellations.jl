@@ -2,7 +2,8 @@
 """
     Constellation
 
-Constellation type for digital communications simulation."""
+Constellation type for simulating digital waveforms.
+"""
 struct Constellation
     label   :: String
     symbols :: Vector{ComplexF64}  # symbol alphabet
@@ -16,10 +17,12 @@ Base.rand(c::Constellation, n::Integer) = rand(c.symbols, n)
 Base.rand(c::Constellation) = rand(c.symbols, 1)
 #Base.show(c::Constellation) = plot(c.symbols, w="p")
 
-""" pam(; M = 2, Es = 1.0, ϕ = 0.0) -> Constellation
+"""
+    pam(; M = 2, Es = 1.0, ϕ = 0.0) -> Constellation
 
 Return a PAM constellation with `M` elements and average symbol energy `Es`.
-The constellation is rotated ϕ radians."""
+The constellation is rotated ϕ radians.
+"""
 function pam(; M = 2, Es = 1.0, ϕ = 0.0)
     isinteger(log2(M)) || error("M must be a power of 2 (M = $M)")
     v = M/2
@@ -29,10 +32,6 @@ function pam(; M = 2, Es = 1.0, ϕ = 0.0)
     return Constellation("$M-PAM", collect(symbols))
 end
 
-""" squareqam(; M = 4, Es = 1.0, ϕ = 0.0)
-
-Return a square QAM constellation with `M` elements and average symbol energy `Es`.
-The constellation is rotated ϕ radians."""
 function squareqam(; M = 4, Es = 1.0, ϕ = 0.0)
     iseven(log2(M)) || error("M must be an even power of 2 (M = $M)")
     M2 = Int(log2(M))
@@ -43,10 +42,28 @@ function squareqam(; M = 4, Es = 1.0, ϕ = 0.0)
     return Constellation("$M-QAM", symbols)
 end
 
-""" psk(; M = 4, Es = 1.0, ϕ = 0.0)
+"""
+    qam(; M = 4, Es = 1.0, ϕ = 0.0)
+
+Return a QAM constellation with `M` elements and average symbol energy `Es`.
+The constellation is rotated ϕ radians.
+
+Note: only square constellations (where `M = 2^(2k)``) are supported.
+"""
+function qam(; M = 4, kwargs...)
+    if iseven(log2(M))
+        return squareqam(; M = M, kwargs...)
+    else
+        error("Only square QAM constellations are supported (M = $M)")
+    end
+end
+
+"""
+    psk(; M = 4, Es = 1.0, ϕ = 0.0)
 
 Return a PSK constellation with `M` elements and average symbol energy `Es`.
-The constellation is rotated ϕ radians."""
+The constellation is rotated ϕ radians.
+"""
 function psk(; M = 4, Es = 1.0, ϕ = 0.0)
     isinteger(log2(M)) || error("M must be a power of 2 (M = $M)")
     θ = range(0, step = 2π/M, length = M)
